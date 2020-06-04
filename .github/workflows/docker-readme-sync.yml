@@ -1,0 +1,17 @@
+name: Docker
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  check-new-idena-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Hub README & description sync
+        uses: meeDamian/sync-readme@v1.0.6
+        with:
+          user: idenadev
+          pass: ${{ secrets.DOCKERIO_PASSWORD }}
+          readme: true
+          description: true
