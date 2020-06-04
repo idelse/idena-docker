@@ -13,5 +13,6 @@ jobs:
         with:
           user: idenadev
           pass: ${{ secrets.DOCKERIO_PASSWORD }}
-          readme: true
+          slug: idenadev/idena
+          readme: ./README.md
           description: true
