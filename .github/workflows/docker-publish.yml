@@ -1,0 +1,38 @@
+name: Check new Idena release
+on:
+  schedule:
+    - cron:  '*/5 * * * *'
+jobs:
+  check-new-idena-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch latest commit release
+        run: |
+          curl -s https://api.github.com/repos/idena-network/idena-go/releases | \
+          jq first | jq -r '.target_commitish' > idena_commit.txt
+      - name: Fetch release version
+        run: |
+          curl -s https://api.github.com/repos/idena-network/idena-go/releases | \
+          jq first | jq -r '.tag_name' | sed 's/v//g' > idena_version.txt
+      - name: Fetch latest docker version published
+        run: |
+           curl -s https://registry.hub.docker.com/v1/repositories/idenadev/idena/tags | \
+           jq last | jq -r .name | sed 's/v//g' > docker_version.txt
+      - name: On new idena release build and push docker image
+        uses: azure/docker-login@v1
+        with:
+          username: idenadev
+          password: ${{ secrets.DOCKERIO_PASSWORD }}
+      - run: |
+          verlte() {
+            [  "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ]
+          }
+          verlt() {
+            [ "$1" = "$2" ] && return 1 || verlte $1 $2
+          }
+          verlt $(cat docker_version.txt) $(cat idena_version.txt) && \
+          git clone https://github.com/idena-dev/idena-docker.git && \
+          cd idena-docker && \
+          make BUILD_COMMIT=$(cat ../idena_commit.txt) BUILD_VERSION=$(cat ../idena_version.txt) && \
+          docker push idenadev/idena:$(cat ../idena_version.txt) && \
+          docker push idenadev/idena:latest || echo "Skip build"
