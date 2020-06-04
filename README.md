@@ -4,7 +4,7 @@ Idena is the first humanistic blockchain. In Bitcoin one core is one vote, in Te
 - **Maintained by**: [idena-dev](https://github.com/idena-dev)
 - **Where to get help**: [idena-dev telegram group](https://t.me/idenadev) or [idena discord group](https://discord.gg/8BusRj7)
 
-# Idena - Example usage
+# Example usage
 ```
 docker run -d -p 127.0.0.1:9009:9009 --name idena idenadev/idena
 ```
