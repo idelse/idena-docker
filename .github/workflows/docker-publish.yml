@@ -1,7 +1,7 @@
 name: Check new Idena release
 on:
   schedule:
-    - cron:  '*/5 * * * *'
+    - cron:  '*/30 * * * *'
 jobs:
   check-new-idena-release:
     runs-on: ubuntu-latest
