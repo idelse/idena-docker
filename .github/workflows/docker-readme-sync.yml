@@ -8,6 +8,7 @@ jobs:
   check-new-idena-release:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
       - name: Docker Hub README & description sync
         uses: meeDamian/sync-readme@v1.0.6
         with:
