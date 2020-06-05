@@ -27,7 +27,7 @@ As with all Docker images, these likely also contain other software which may be
 As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
 
 ## Links
-- [Docker Hub](https://hub.docker.com/repository/docker/idenadev/idena)
+- [Docker Hub](https://hub.docker.com/r/idenadev/idena)
 - [Documentation](https://www.idena.dev/idena-docker)
 - [Telegram](https://t.me/idenadev)
 
