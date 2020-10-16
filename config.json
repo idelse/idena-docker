@@ -1,17 +1,15 @@
 {
   "P2P": {
-    "MaxInboundPeers": 12,
-    "MaxOutboundPeers": 6
+    "ListenAddr": ":40404",
+    "NoDiscovery": false
   },
   "RPC": {
-    "HTTPHost": "0.0.0.0",
+    "HTTPHost": "localhost",
     "HTTPPort": 9009
   },
   "IpfsConf": {
-    "Profile": "server",
     "IpfsPort": 40405,
-    "BlockPinThreshold": 0.3,
-    "FlipPinThreshold": 0.5
+    "Profile": "server"
   },
   "Sync": {
     "FastSync": true

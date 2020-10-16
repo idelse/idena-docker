@@ -4,7 +4,7 @@ LABEL           autodelete="true"
 ARG             REPO=idenadev
 ARG             IDENA_REPO=idena-network/idena-go
 ARG             BUILD_TARGET=idena
-ARG             BUILD_COMMIT=8fa06634694d85c1fcac6e24d3b498a6f6cb59e4
+ARG             BUILD_COMMIT=728d9e1db99dd92d5a61bfa4fc358f9a7a2762a5
 RUN             apk add git gcc libc-dev
 RUN             git clone https://github.com/${IDENA_REPO} /idena
 WORKDIR         /idena
@@ -14,7 +14,6 @@ RUN             strip ${BUILD_TARGET}
 
 # final stage
 FROM            alpine:latest
-MAINTAINER      idena-dev <hello@idena.dev>
 ARG             BUILD_TARGET=idena
 ARG             USER=idena
 ENV             BUILD_TARGET=${BUILD_TARGET}
