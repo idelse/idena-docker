@@ -15,6 +15,10 @@ build:
 	docker build -f Dockerfile --pull --no-cache --rm --tag $(BUILD_IMAGE) --tag $(BUILD_LATEST) $(BUILD_FLAGS) .
 	docker image prune --force --filter "label=autodelete=true"
 
+build_cache:
+	docker build -f Dockerfile --pull --rm --tag $(BUILD_IMAGE) --tag $(BUILD_LATEST) $(BUILD_FLAGS) .
+	docker image prune --force --filter "label=autodelete=true"
+
 publish:
 	docker push idenadev/idena:$(BUILD_VERSION)
 

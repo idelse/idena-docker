@@ -17,6 +17,10 @@ FROM            alpine:latest
 ARG             BUILD_TARGET=idena
 ARG             USER=idena
 ENV             BUILD_TARGET=${BUILD_TARGET}
+RUN             apk add --update nodejs npm
+RUN             npm install -i pm2
+COPY            ./proxy /proxy
+RUN             cd /proxy && npm install
 RUN             apk --no-cache add ca-certificates 'su-exec>=0.2' \
                 && addgroup $USER -g 500 \
 			    && adduser -u 500 -D -h /home/$USER -S -s /sbin/nologin -G $USER $USER
@@ -25,6 +29,6 @@ COPY            docker-entrypoint.sh /usr/local/bin/
 COPY            config.json /home/$USER/
 RUN             chmod +x /usr/local/bin/${BUILD_TARGET}
 WORKDIR         /home/$USER
-EXPOSE          9009
+EXPOSE          80
 ENTRYPOINT      ["docker-entrypoint.sh"]
 CMD             ["", "run"]
