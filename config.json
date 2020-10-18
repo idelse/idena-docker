@@ -4,7 +4,7 @@
     "NoDiscovery": false
   },
   "RPC": {
-    "HTTPHost": "localhost",
+    "HTTPHost": "0.0.0.0",
     "HTTPPort": 9009
   },
   "IpfsConf": {
