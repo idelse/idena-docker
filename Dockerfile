@@ -5,11 +5,12 @@ ARG             REPO=idenadev
 ARG             IDENA_REPO=idena-network/idena-go
 ARG             BUILD_TARGET=idena
 ARG             BUILD_COMMIT=b251f609d9e7375a0b7e00f63ea2fa1754ce7240
+ARG             BUILD_VERSION=0.22.1
 RUN             apk add git gcc libc-dev
 RUN             git clone https://github.com/${IDENA_REPO} /idena
 WORKDIR         /idena
 RUN             git reset --hard ${BUILD_COMMIT}
-RUN             go build -o ${BUILD_TARGET}
+RUN             go build -ldflags "-X main.version=${BUILD_VERSION}" -o ${BUILD_TARGET}
 RUN             strip ${BUILD_TARGET}
 
 # final stage
