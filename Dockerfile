@@ -4,7 +4,7 @@ LABEL           autodelete="true"
 ARG             REPO=idenadev
 ARG             IDENA_REPO=idena-network/idena-go
 ARG             BUILD_TARGET=idena
-ARG             BUILD_COMMIT=728d9e1db99dd92d5a61bfa4fc358f9a7a2762a5
+ARG             BUILD_COMMIT=b251f609d9e7375a0b7e00f63ea2fa1754ce7240
 RUN             apk add git gcc libc-dev
 RUN             git clone https://github.com/${IDENA_REPO} /idena
 WORKDIR         /idena
